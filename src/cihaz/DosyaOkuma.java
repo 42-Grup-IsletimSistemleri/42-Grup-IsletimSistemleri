@@ -5,27 +5,37 @@ import java.util.Scanner;
 
 
 public class DosyaOkuma {
-    public void Operator(File dosya) {
+    public void dosyaOku(File dosya) {
 
+        Kuyruk JobDispatch = new Kuyruk();
         try {
             Scanner myReader = new Scanner(dosya);
+
 
             String  varisZamani="";
             String oncelik="";
             String sure="";
 
             while (myReader.hasNextLine()) {
+                Process process=new Process();
+
                 String satir = myReader.nextLine();
 
                 String sayilar[]=satir.split(",");
 
-                for(int i=0; i<3;i++){
+                process.varisZamani=Integer.valueOf(sayilar[0].trim());
+                process.oncelik=Integer.valueOf(sayilar[1].trim());
+                process.sure=Integer.valueOf(sayilar[2].trim());
 
-                    System.out.println(Integer.valueOf(sayilar[i].trim()));
-                }
-
+                JobDispatch.Add(process);
             }
             myReader.close();
+
+            for(int i=0;i< JobDispatch.Length();i++){
+                System.out.print(JobDispatch.Delete().varisZamani+" "+JobDispatch.Delete().oncelik +" "+JobDispatch.Delete().sure+" ");
+                System.out.println();
+            }
+
         }
         catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
