@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="isletimProjeOdevi:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/isletimProjeOdevi_jar</output-path>
+    <root id="archive" name="isletimProjeOdevi.jar">
+      <element id="module-output" name="isletimProjeOdevi" />
+    </root>
+  </artifact>
+</component>
