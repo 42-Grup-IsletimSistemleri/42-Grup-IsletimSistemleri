@@ -1,7 +1,6 @@
 package cihaz;
+
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class Main {
 

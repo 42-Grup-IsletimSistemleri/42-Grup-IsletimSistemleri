@@ -26,4 +26,10 @@ public class Kuyruk {
         kuyrukSayisi--;
         return p;
     }
+
+    public Process First(){
+        Process p= prosesler.peek();
+        return p;
+    }
+
 }
