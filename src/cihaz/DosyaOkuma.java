@@ -7,12 +7,12 @@ import java.util.Scanner;
 public class DosyaOkuma {
     public void dosyaOku(File dosya) {
 
-        Kuyruk JobDispatch = new Kuyruk();
-        Kuyruk RealTime = new Kuyruk();
-        Kuyruk UserJob =new Kuyruk();
-        Kuyruk Priority1 =new Kuyruk();
-        Kuyruk Priority2 =new Kuyruk();
-        Kuyruk Priority3 =new Kuyruk();
+        Kuyruk JobDispatch	=new Kuyruk();
+        Kuyruk RealTime  	=new Kuyruk();
+        Kuyruk UserJob   	=new Kuyruk();
+        Kuyruk Priority1 	=new Kuyruk();
+        Kuyruk Priority2 	=new Kuyruk();
+        Kuyruk Priority3 	=new Kuyruk();
 
         try {
             Scanner myReader = new Scanner(dosya);
@@ -38,37 +38,39 @@ public class DosyaOkuma {
 
             myReader.close();
 
-            int length = JobDispatch.Length(); //25
-
+            int length = JobDispatch.Length();
+            
             for (int i = 0; i < length; i++) {
                 if(JobDispatch.First().oncelik==0){
                     RealTime.Add(JobDispatch.First());
-                    System.out.print(RealTime.First().varisZamani + " " + RealTime.First().oncelik + " " + RealTime.First().sure + " " + RealTime.First().id + " ");
-                    RealTime.Delete();
-                    System.out.println("  ");
                     JobDispatch.Delete();
-                }else {
+                }
+                else {
                     UserJob.Add(JobDispatch.First());
-                    System.out.print(UserJob.First().varisZamani + " " + UserJob.First().oncelik + " " + UserJob.First().sure + " " + UserJob.First().id + " ");
-                    UserJob.Delete();
-                    System.out.println("  ");
                     JobDispatch.Delete();
                 }
             }
 
-            int length1= UserJob.Length();
+            int len = UserJob.Length();
 
-            System.out.println(length1);
-
-            for (int i = 0; i < length1; i++) {
+            for (int i = 0; i < len; i++) {
                 if(UserJob.First().oncelik==1){
                     Priority1.Add(UserJob.First());
+                    System.out.print(Priority1.First().varisZamani + " " + Priority1.First().oncelik + " " + Priority1.First().sure + " " + Priority1.First().id + " ");
+                    System.out.println();
+                    Priority1.Delete();
                     UserJob.Delete();
                 }else if(UserJob.First().oncelik==2){
                     Priority2.Add(UserJob.First());
+                    System.out.print(Priority2.First().varisZamani + " " + Priority2.First().oncelik + " " + Priority2.First().sure + " " + Priority2.First().id + " ");
+                    System.out.println();
+                    Priority2.Delete();
                     UserJob.Delete();
                 }else {
                     Priority3.Add(UserJob.First());
+                    System.out.print(Priority3.First().varisZamani + " " + Priority3.First().oncelik + " " + Priority3.First().sure + " " + Priority3.First().id + " ");
+                    System.out.println();
+                    Priority3.Delete();
                     UserJob.Delete();
                 }
             }

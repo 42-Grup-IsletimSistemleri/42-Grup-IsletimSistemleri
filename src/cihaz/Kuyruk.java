@@ -6,10 +6,11 @@ import java.util.Queue;
 public class Kuyruk {
 
     Queue<Process> prosesler;
-    public static int kuyrukSayisi=0;
+    private int kuyrukSayisi;
 
     Kuyruk(){
         prosesler=new LinkedList<>();
+        kuyrukSayisi = 0;
     }
 
     public void Add(Process process){
@@ -31,5 +32,4 @@ public class Kuyruk {
         Process p= prosesler.peek();
         return p;
     }
-
 }

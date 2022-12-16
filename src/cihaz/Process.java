@@ -6,5 +6,4 @@ public class Process {
     public int oncelik;
     public int sure;
     public int id;
-
 }
