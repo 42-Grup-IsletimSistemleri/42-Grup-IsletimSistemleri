@@ -1,11 +1,12 @@
 package cihaz;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
-
+import java.io.IOException;
 
 public class DosyaOkuma {
-    public void dosyaOku(File dosya) {
+    public void dosyaOku(File dosya) throws IOException {
 
         Kuyruk JobDispatch	=new Kuyruk();
         Kuyruk RealTime  	=new Kuyruk();
@@ -15,12 +16,32 @@ public class DosyaOkuma {
         Kuyruk Priority3 	=new Kuyruk();
 
         try {
+        	Process process;
+        	String a[] = new String[] { "java", "-jar","program2.jar",Integer.toString(5)};
+        	
+        	
+        	List<String> params = java.util.Arrays.asList(a);
+        			ProcessBuilder builder = new ProcessBuilder(params);
+        			process=builder.start();		
+        			Scanner scanner = new Scanner(process.getInputStream());
+        			while (scanner.hasNextLine()) {
+        			    System.out.println(scanner.nextLine());
+        			}
+        	
+        	
+        	
+        /*	
             Scanner myReader = new Scanner(dosya);
 
            int prosessirasi = 0;
 
             while (myReader.hasNextLine()) {
                 Process process = new Process();
+                Thread t = new Thread(process);
+                t.start();
+                t.notify();
+                
+                
 
                 String satir = myReader.nextLine();
 
@@ -74,7 +95,7 @@ public class DosyaOkuma {
                     UserJob.Delete();
                 }
             }
-            /*
+
             for (int i = 0; i < length1; i++) {
                 System.out.print(Priority1.First().varisZamani + " " + Priority1.First().oncelik + " " + Priority1.First().sure + " " + Priority1.First().id + " ");
                 System.out.println();
