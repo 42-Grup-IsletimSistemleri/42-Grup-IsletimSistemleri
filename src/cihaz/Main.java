@@ -16,6 +16,8 @@ public class Main {
 		Renk r = new Renk();
 		System.out.println("\u001B[31m" + "Hello World in red!");
 		
+		
+		
 	}
 
 }

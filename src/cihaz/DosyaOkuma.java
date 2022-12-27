@@ -16,19 +16,16 @@ public class DosyaOkuma {
         Kuyruk Priority3 	=new Kuyruk();
 
         try {
-        	Process process;
-        	String a[] = new String[] { "java", "-jar","program2.jar",Integer.toString(5)};
         	
-        	
-        	List<String> params = java.util.Arrays.asList(a);
-        			ProcessBuilder builder = new ProcessBuilder(params);
-        			process=builder.start();		
-        			Scanner scanner = new Scanner(process.getInputStream());
-        			while (scanner.hasNextLine()) {
-        			    System.out.println(scanner.nextLine());
-        			}
-        	
-        	
+    		List<String> params = java.util.Arrays.asList( "java", "-jar","program.jar"," 12","24","3","55","basladi");
+    		ProcessBuilder builder = new ProcessBuilder(params);
+    		builder.redirectError();
+    		Process process = builder.start();
+    		Scanner scanner = new Scanner(process.getInputStream());
+    		while (scanner.hasNextLine()) {
+    		    System.out.println(scanner.nextLine());
+    		}
+
         	
         /*	
             Scanner myReader = new Scanner(dosya);

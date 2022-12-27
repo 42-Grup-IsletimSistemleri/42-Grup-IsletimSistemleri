@@ -13,12 +13,12 @@ public class Renk {
 	    for(int i=0;i<9;i++) {
 	    	renkler[i] = "\u001B["+ (30+i) +"m";
 	    
-        System.out.println(renkler[i] + String.format("%04d%n",i) + ANSI_RESET);
+        System.out.println(renkler[i] + String.format("%04d",i) + ANSI_RESET);
         }
 	    for(int i=0;i<9;i++) {
 	    	renkler[i] = "\u001B["+ (90+i) +"m";
 	    
-        System.out.println(renkler[i] + String.format("%04d%n",i+9) + ANSI_RESET);
+        System.out.println(renkler[i] + String.format("%04d",i+9) + ANSI_RESET);
         }
     }
 }
