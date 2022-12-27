@@ -6,102 +6,75 @@ import java.util.Scanner;
 import java.io.IOException;
 
 public class DosyaOkuma {
+    public Kuyruk JobDispatch	=new Kuyruk();
+    public Kuyruk RealTime  	=new Kuyruk();
+    Kuyruk UserJob   	=new Kuyruk();
+    Kuyruk Priority1 	=new Kuyruk();
+    Kuyruk Priority2 	=new Kuyruk();
+    Kuyruk Priority3 	=new Kuyruk();
+    public int x;
+
     public void dosyaOku(File dosya) throws IOException {
-
-        Kuyruk JobDispatch	=new Kuyruk();
-        Kuyruk RealTime  	=new Kuyruk();
-        Kuyruk UserJob   	=new Kuyruk();
-        Kuyruk Priority1 	=new Kuyruk();
-        Kuyruk Priority2 	=new Kuyruk();
-        Kuyruk Priority3 	=new Kuyruk();
-
         try {
-        	
-    		List<String> params = java.util.Arrays.asList( "java", "-jar","program.jar"," 12","24","3","55","basladi");
-    		ProcessBuilder builder = new ProcessBuilder(params);
-    		builder.redirectError();
-    		Process process = builder.start();
-    		Scanner scanner = new Scanner(process.getInputStream());
-    		while (scanner.hasNextLine()) {
-    		    System.out.println(scanner.nextLine());
-    		}
-
-        	
-        /*	
             Scanner myReader = new Scanner(dosya);
-
-           int prosessirasi = 0;
-
+            int prosessirasi = 0;
             while (myReader.hasNextLine()) {
-                Process process = new Process();
-                Thread t = new Thread(process);
-                t.start();
-                t.notify();
-                
-                
 
                 String satir = myReader.nextLine();
-
                 String sayilar[] = satir.split(",");
 
-                process.varisZamani = Integer.valueOf(sayilar[0].trim());
-                process.oncelik = Integer.valueOf(sayilar[1].trim());
-                process.sure = Integer.valueOf(sayilar[2].trim());
-                process.id = prosessirasi;
 
-                JobDispatch.Add(process);
+                int varisSuresi =Integer.parseInt(sayilar[0].trim());
+                int oncelik =Integer.parseInt(sayilar[1].trim());
+                int sure =Integer.parseInt(sayilar[2].trim());
+                int id =Integer.parseInt(sayilar[3].trim());
 
+                List<String> params = java.util.Arrays.asList("java", "-jar", "program.jar", Integer.toString(prosessirasi), sayilar[0].trim(), sayilar[1].trim(), sayilar[2].trim(), "basladi");
+                ProcessBuilder builder = new ProcessBuilder(params);
+                builder.redirectError();
+
+                JobDispatch.Add(builder);
                 prosessirasi++;
-            }
 
-            myReader.close();
+                int length = JobDispatch.Length();
 
-            int length = JobDispatch.Length();
-            
-            for (int i = 0; i < length; i++) {
-                if(JobDispatch.First().oncelik==0){
-                    RealTime.Add(JobDispatch.First());
-                    JobDispatch.Delete();
+                for (int i = 0; i < length; i++) {
+                    if(oncelik==0){
+                        RealTime.Add(JobDispatch.First());
+                        JobDispatch.Delete();
+                        java.lang.Process process = RealTime.First().start();
+
+                        Scanner scanner = new Scanner(((java.lang.Process) process).getInputStream());
+                        while (scanner.hasNextLine()) {
+                            System.out.println(scanner.nextLine());
+                        }
+                        RealTime.Delete();
+                    }
+                    else {
+                        UserJob.Add(JobDispatch.First());
+                        JobDispatch.Delete();
+                    }
                 }
-                else {
-                    UserJob.Add(JobDispatch.First());
-                    JobDispatch.Delete();
-                }
-            }
 
             int len = UserJob.Length();
 
             for (int i = 0; i < len; i++) {
-                if(UserJob.First().oncelik==1){
+                if(oncelik==1){
                     Priority1.Add(UserJob.First());
-                    System.out.print(Priority1.First().varisZamani + " " + Priority1.First().oncelik + " " + Priority1.First().sure + " " + Priority1.First().id + " ");
-                    System.out.println();
-                    Priority1.Delete();
                     UserJob.Delete();
-                }else if(UserJob.First().oncelik==2){
+                }else if(oncelik==2){
                     Priority2.Add(UserJob.First());
-                    System.out.print(Priority2.First().varisZamani + " " + Priority2.First().oncelik + " " + Priority2.First().sure + " " + Priority2.First().id + " ");
-                    System.out.println();
-                    Priority2.Delete();
                     UserJob.Delete();
                 }else {
                     Priority3.Add(UserJob.First());
-                    System.out.print(Priority3.First().varisZamani + " " + Priority3.First().oncelik + " " + Priority3.First().sure + " " + Priority3.First().id + " ");
-                    System.out.println();
-                    Priority3.Delete();
                     UserJob.Delete();
                 }
             }
-
-            for (int i = 0; i < length1; i++) {
-                System.out.print(Priority1.First().varisZamani + " " + Priority1.First().oncelik + " " + Priority1.First().sure + " " + Priority1.First().id + " ");
-                System.out.println();
-                JobDispatch.Delete();
-            }*/
-
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+         }
+            myReader.close();
+        }catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
         }
     }
 }

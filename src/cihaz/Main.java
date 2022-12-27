@@ -13,8 +13,8 @@ public class Main {
 		DosyaOkuma d = new DosyaOkuma();
 		d.dosyaOku(dosya);
 		
-		Renk r = new Renk();
-		System.out.println("\u001B[31m" + "Hello World in red!");
+		//Renk r = new Renk();
+		//System.out.println("\u001B[31m" + "Hello World in red!");
 		
 		
 		
