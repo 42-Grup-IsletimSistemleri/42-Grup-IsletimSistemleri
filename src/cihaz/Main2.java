@@ -6,7 +6,7 @@ public class Main2 {
 		// TODO Auto-generated method stub	  try {
 		  
 		
-		String saniye=args[0];
+		 String saniye=args[0];
 		 String id=args[1];
 		 String oncelik=args[2];
 		 String patlamaZamani=args[3];

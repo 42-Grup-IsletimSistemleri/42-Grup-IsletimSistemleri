@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class Kuyruk {
 
-    Queue<ProcessBuilder> prosesler;
+    Queue<Proses> prosesler;
     private int kuyrukSayisi;
 
     Kuyruk(){
@@ -13,7 +13,7 @@ public class Kuyruk {
         kuyrukSayisi = 0;
     }
 
-    public void Add(ProcessBuilder process){
+    public void Add(Proses process){
         kuyrukSayisi++;
         prosesler.offer(process);
     }
@@ -22,14 +22,14 @@ public class Kuyruk {
         return kuyrukSayisi;
     }
 
-    public ProcessBuilder Delete(){
-        ProcessBuilder p=prosesler.poll();
+    public Proses Delete(){
+        Proses p=prosesler.poll();
         kuyrukSayisi--;
         return p;
     }
 
-    public ProcessBuilder First(){
-        ProcessBuilder p= prosesler.peek();
+    public Proses First(){
+        Proses p= prosesler.peek();
         return p;
     }
 }

@@ -6,5 +6,5 @@ public class Proses {
     public int oncelik;
     public int sure;
     public int id;
-    
+    public Process proses;
 }
