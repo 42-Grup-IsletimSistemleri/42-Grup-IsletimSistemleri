@@ -22,6 +22,9 @@ public class Kuyruk {
         return kuyrukSayisi;
     }
 
+    public int size(){
+        return prosesler.size();
+    }
     public Proses Delete(){
         Proses p=prosesler.poll();
         kuyrukSayisi--;
@@ -32,4 +35,13 @@ public class Kuyruk {
         Proses p= prosesler.peek();
         return p;
     }
+    public boolean doluMu(){
+        if(kuyrukSayisi==0){
+            return false;
+        }
+        else{
+            return  true;
+        }
+    }
+
 }

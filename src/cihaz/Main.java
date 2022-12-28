@@ -12,6 +12,10 @@ public class Main {
 		
 		DosyaOkuma d = new DosyaOkuma();
 		d.dosyaOku(dosya);
+
+		//Dispatcher dispatcher = new Dispatcher();
+		//dispatcher.Gorevlendirici();
+
 		
 		/*
 		Renk r = new Renk();
