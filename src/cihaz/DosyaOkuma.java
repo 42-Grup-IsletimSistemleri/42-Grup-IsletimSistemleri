@@ -80,57 +80,76 @@ public class DosyaOkuma {
             myReader.close();
 			while(true){
 				if(RealTime.doluMu() && RealTime.First().varisZamani<=timer){ //0 öncelikli
-					while (RealTime.First().sure>0){ //çalışma süresi
-
-						Scanner scanner = new Scanner(RealTime.First().proses.getInputStream());
-						while (scanner.hasNextLine()) {
-							System.out.println("a");
-							System.out.println(RealTime.First().sure);
+						for(int i=RealTime.First().sure;i>=0;i--){
+							Scanner scanner = new Scanner(RealTime.First().proses.getInputStream());
+							while (scanner.hasNextLine()) {
+								System.out.println(scanner.nextLine());
+							}
 							RealTime.First().sure--;
-							System.out.println(scanner.nextLine());
+							scanner.close();
+							List<String> params2 = java.util.Arrays.asList( "java", "-jar","program.jar",Integer.toString(RealTime.First().varisZamani),Integer.toString(RealTime.First().id),Integer.toString(RealTime.First().oncelik),Integer.toString(RealTime.First().sure),"yurutuluyor");
+							ProcessBuilder builder2 = new ProcessBuilder(params2);
+							builder2.redirectError();
+							RealTime.First().proses = builder2.start();
+
+							timer++;
 						}
-						scanner.close();
-						//System.out.println(RealTime.First().sure);
-						//RealTime.First().sure--;
-						timer++;
-					}
 					RealTime.Delete();
 				}
-
 				else if(Priority1.doluMu() &&Priority1.First().varisZamani<=timer){ //1 öncelikli
+					if(Priority1.First().sure==-1) break;
 					Scanner scanner = new Scanner(Priority1.First().proses.getInputStream());
 					while (scanner.hasNextLine()) {
 						System.out.println(scanner.nextLine());
 					}
+					Priority1.First().sure--;
+					scanner.close();
+					List<String> params2 = java.util.Arrays.asList( "java", "-jar","program.jar",Integer.toString(Priority1.First().varisZamani),Integer.toString(Priority1.First().id),Integer.toString(Priority1.First().oncelik+1),Integer.toString(Priority1.First().sure),"yurutuluyor");
+					ProcessBuilder builder2 = new ProcessBuilder(params2);
+					builder2.redirectError();
+					Priority1.First().proses = builder2.start();
+					Priority2.Add(Priority1.First());
 					Priority1.Delete();
 					timer++;
 				}
 				else if(Priority2.doluMu() && Priority2.First().varisZamani<=timer){ //2 öncelikli
+					if(Priority2.First().sure==-1) break;
 					Scanner scanner = new Scanner(Priority2.First().proses.getInputStream());
 					while (scanner.hasNextLine()) {
 						System.out.println(scanner.nextLine());
 					}
+					Priority2.First().sure--;
+					scanner.close();
+
+					List<String> params2 = java.util.Arrays.asList( "java", "-jar","program.jar",Integer.toString(Priority2.First().varisZamani),Integer.toString(Priority2.First().id),Integer.toString(Priority2.First().oncelik+1),Integer.toString(Priority2.First().sure),"yurutuluyor");
+					ProcessBuilder builder2 = new ProcessBuilder(params2);
+					builder2.redirectError();
+					Priority2.First().proses = builder2.start();
+					Priority3.Add(Priority2.First());
 					Priority2.Delete();
 					timer++;
 				}
 				else if(Priority3.doluMu() && Priority3.First().varisZamani<=timer){ //3 öncelikli
+
+					if(Priority3.First().sure==-1) break;
+					//System.out.println("b");
 					Scanner scanner = new Scanner(Priority3.First().proses.getInputStream());
 					while (scanner.hasNextLine()) {
 						System.out.println(scanner.nextLine());
 					}
+					Priority3.First().sure--;
+					scanner.close();
+					List<String> params2 = java.util.Arrays.asList( "java", "-jar","program.jar",Integer.toString(Priority3.First().varisZamani),Integer.toString(Priority3.First().id),Integer.toString(Priority3.First().oncelik),Integer.toString(Priority3.First().sure),"yurutuluyor");
+
+					ProcessBuilder builder2 = new ProcessBuilder(params2);
+					builder2.redirectError();
+					Priority3.First().proses = builder2.start();
+					Priority3.Add(Priority3.First());
 					Priority3.Delete();
 					timer++;
 				}
-
-
+				//System.out.println("a");
 			}
-
-
-
-
-
-
-
 
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
