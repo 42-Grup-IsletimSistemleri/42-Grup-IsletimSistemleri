@@ -79,25 +79,31 @@ public class DosyaOkuma {
             }
             myReader.close();
 			while(true){
-				if(RealTime.doluMu() && RealTime.First().varisZamani<=timer){ //0 öncelikli
-						for(int i=RealTime.First().sure;i>=0;i--){
-							Scanner scanner = new Scanner(RealTime.First().proses.getInputStream());
-							while (scanner.hasNextLine()) {
-								System.out.println(scanner.nextLine());
-							}
-							RealTime.First().sure--;
-							scanner.close();
-							List<String> params2 = java.util.Arrays.asList( "java", "-jar","program.jar",Integer.toString(RealTime.First().varisZamani),Integer.toString(RealTime.First().id),Integer.toString(RealTime.First().oncelik),Integer.toString(RealTime.First().sure),"yurutuluyor");
-							ProcessBuilder builder2 = new ProcessBuilder(params2);
-							builder2.redirectError();
-							RealTime.First().proses = builder2.start();
-
-							timer++;
+				String durum = " ";
+				if(RealTime.doluMu() && RealTime.First().varisZamani<=timer){ //0 Oncelikli
+					for(int i=RealTime.First().sure;i>=0;i--){
+						System.out.print(timer + " --->");
+						Scanner scanner = new Scanner(RealTime.First().proses.getInputStream());
+						while (scanner.hasNextLine()) {
+							System.out.println(scanner.nextLine());
 						}
+						RealTime.First().sure--;
+						if(RealTime.First().sure == 0) durum = "sonlandi";
+						else durum = "yurutuluyor";
+						scanner.close();
+						List<String> params2 = java.util.Arrays.asList( "java", "-jar","program.jar",Integer.toString(RealTime.First().varisZamani),Integer.toString(RealTime.First().id),Integer.toString(RealTime.First().oncelik),Integer.toString(RealTime.First().sure),durum);
+						ProcessBuilder builder2 = new ProcessBuilder(params2);
+						builder2.redirectError();
+						RealTime.First().proses = builder2.start();
+
+						timer++;
+					}
 					RealTime.Delete();
 				}
-				else if(Priority1.doluMu() &&Priority1.First().varisZamani<=timer){ //1 öncelikli
+				else if(Priority1.doluMu() &&Priority1.First().varisZamani<=timer){ //1 Oncelikli
 					if(Priority1.First().sure==-1) break;
+
+					System.out.print(timer + " --->");
 					Scanner scanner = new Scanner(Priority1.First().proses.getInputStream());
 					while (scanner.hasNextLine()) {
 						System.out.println(scanner.nextLine());
@@ -112,7 +118,7 @@ public class DosyaOkuma {
 					Priority1.Delete();
 					timer++;
 				}
-				else if(Priority2.doluMu() && Priority2.First().varisZamani<=timer){ //2 öncelikli
+				else if(Priority2.doluMu() && Priority2.First().varisZamani<=timer){ //2 Oncelikli
 					if(Priority2.First().sure==-1) break;
 					Scanner scanner = new Scanner(Priority2.First().proses.getInputStream());
 					while (scanner.hasNextLine()) {
@@ -129,7 +135,7 @@ public class DosyaOkuma {
 					Priority2.Delete();
 					timer++;
 				}
-				else if(Priority3.doluMu() && Priority3.First().varisZamani<=timer){ //3 öncelikli
+				else if(Priority3.doluMu() && Priority3.First().varisZamani<=timer){ //3 Oncelikli
 
 					if(Priority3.First().sure==-1) break;
 					//System.out.println("b");
