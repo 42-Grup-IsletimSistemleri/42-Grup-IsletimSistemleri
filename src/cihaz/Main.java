@@ -8,19 +8,17 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		
-		File dosya = new File("giris.txt");
 		
-		DosyaOkuma d = new DosyaOkuma();
-		d.dosyaOku(dosya);
+		
 
-		//Dispatcher dispatcher = new Dispatcher();
-		//dispatcher.Gorevlendirici();
+		Dispatcher dispatcher = new Dispatcher();
+		dispatcher.Gorevlendirici();
 
 		
-		/*
-		Renk r = new Renk();
-		System.out.println("\u001B[31m" + "Hello World in red!");
-		*/
+		
+		//Renk r = new Renk();
+		//System.out.println("\u001B[31m" + "Hello World in red!");
+		
 		
 		
 	}
