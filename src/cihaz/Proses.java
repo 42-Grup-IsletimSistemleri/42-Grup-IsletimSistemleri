@@ -19,6 +19,5 @@ public class Proses {
 	    Random rand = new Random();
 	    int random = rand.nextInt(17);
 	    renk = renkler[random];
-  
     }
 }

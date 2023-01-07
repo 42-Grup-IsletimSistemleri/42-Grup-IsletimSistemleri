@@ -7,18 +7,14 @@ import java.util.Scanner;
 import java.io.IOException;
 
 public class DosyaOkuma {
-	public Kuyruk JobDispatch;
-        Kuyruk RealTime  	=new Kuyruk();
-        Kuyruk UserJob   	=new Kuyruk();
-        Kuyruk Priority1 	=new Kuyruk();
-        Kuyruk Priority2 	=new Kuyruk();
-        Kuyruk Priority3 	=new Kuyruk();
-	int timer=0;
+	Kuyruk JobDispatch  =new Kuyruk();
+    Kuyruk RealTime  	=new Kuyruk();
+    Kuyruk UserJob   	=new Kuyruk();
+    Kuyruk Priority1 	=new Kuyruk();
+    Kuyruk Priority2 	=new Kuyruk();
+    Kuyruk Priority3 	=new Kuyruk();
 
     public void dosyaOku(File dosya) throws IOException {
-
-        JobDispatch	=new Kuyruk();
-
         try {
 
             Scanner myReader = new Scanner(dosya);
@@ -43,39 +39,6 @@ public class DosyaOkuma {
 	    		p.proses = builder.start();
                 prosessirasi++;
                 JobDispatch.Add(p);
-	    		//Scanner scanner = new Scanner(JobDispatch.First().proses.getInputStream());
-	    		//while (scanner.hasNextLine()) {
-	    		//    System.out.println(scanner.nextLine());
-	    		//}
-	    		
-	    		int length = JobDispatch.Length();
-
-	            for (int i = 0; i < length; i++) {
-	                if(p.oncelik==0){
-	                    RealTime.Add(JobDispatch.First());
-						JobDispatch.Delete();
-	                }
-	                else {
-	                    UserJob.Add(JobDispatch.First());
-						JobDispatch.Delete();
-	                }
-	            }
-
-	            int len = UserJob.Length();
-
-	            for (int i = 0; i < len; i++) {
-	                if(p.oncelik==1){
-	                    Priority1.Add(UserJob.First());
-	                    UserJob.Delete();
-	                }else if(p.oncelik==2){
-	                    Priority2.Add(UserJob.First());
-	                    UserJob.Delete();
-	                }else {
-	                    Priority3.Add(UserJob.First());
-	                    UserJob.Delete();
-	                }
-	            }
-
             }
             myReader.close();
 
