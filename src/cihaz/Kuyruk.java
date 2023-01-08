@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class Kuyruk {
 
-    Queue<Proses> prosesler;
+    Queue<Proses> prosesler; //icerisinde proses sýnýfýndan nesneler tutan bir kuyruk tanimlanir.
     private int kuyrukSayisi;
 
     Kuyruk(){
@@ -13,29 +13,29 @@ public class Kuyruk {
         kuyrukSayisi = 0;
     }
 
-    public void Add(Proses process){
+    public void Add(Proses process){//kuyruga eleman ekleme fonksiyonu
         kuyrukSayisi++;
         prosesler.offer(process);
     }
 
-    public int Length(){
+    public int Length(){//kuyrugun uzunlugunu donduren fonksiyon
         return kuyrukSayisi;
     }
 
     public int size(){
         return prosesler.size();
     }
-    public Proses Delete(){
+    public Proses Delete(){//kuyruktan eleman silme fonksiyonu
         Proses p=prosesler.poll();
         kuyrukSayisi--;
         return p;
     }
 
-    public Proses First(){
+    public Proses First(){//kuyrugun ilk elemanini getiren fonksiyon
         Proses p= prosesler.peek();
         return p;
     }
-    public boolean doluMu(){
+    public boolean doluMu(){//kuyrugun bos olup olmadigini konutrol eden fonksiyon
         if(kuyrukSayisi<=0){
             return false;
         }

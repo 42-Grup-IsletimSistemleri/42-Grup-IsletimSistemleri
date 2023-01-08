@@ -11,7 +11,7 @@ public class Main2 {
 		 String durum=args[4];
 		 
 		 if(durum.equals("basladi"))
-			 System.out.println(" Proses Baslatildi (id:"+String.format("%04d",Integer.parseInt(id))+" Oncelik: "+oncelik+" Kalan Sure: "+patlamaZamani+")");
+			 System.out.println(" Proses Baslatildi  (id:"+String.format("%04d",Integer.parseInt(id))+" Oncelik: "+oncelik+" Kalan Sure: "+patlamaZamani+")");
 		 
 		 if(durum.equals("yurutuluyor"))
 			 System.out.println(" Proses Yurutuluyor (id:"+String.format("%04d",Integer.parseInt(id))+" Oncelik: "+oncelik+" Kalan Sure: "+patlamaZamani+")");
@@ -20,6 +20,6 @@ public class Main2 {
 			 System.out.println(" Proses Askiya Alindi (id:"+String.format("%04d",Integer.parseInt(id))+" Oncelik: "+oncelik+" Kalan Sure: "+patlamaZamani+")");
 		
 		 if(durum.equals("sonlandi"))
-			 System.out.println(" Proses Sonlandi (id:"+String.format("%04d",Integer.parseInt(id))+" Oncelik: "+oncelik+" Kalan Sure: "+patlamaZamani+")");
+			 System.out.println(" Proses Sonlandi    (id:"+String.format("%04d",Integer.parseInt(id))+" Oncelik: "+oncelik+" Kalan Sure: "+patlamaZamani+")");
 	}
 }
