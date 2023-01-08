@@ -36,7 +36,7 @@ public class Kuyruk {
         return p;
     }
     public boolean doluMu(){
-        if(kuyrukSayisi==0){
+        if(kuyrukSayisi<=0){
             return false;
         }
         else{
