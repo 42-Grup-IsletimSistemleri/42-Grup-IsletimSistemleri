@@ -1,5 +1,6 @@
 # 42-Grup-IsletimSistemleri
-
-Okunacak dosyayı projenin ana klasörüne atınız.<br/>
-Program çalıştırıldığında kullanıcıdan okunacak dosyanın adı istenecektir.<br/>
-Dosya adı girildiğinde (örnek: giris.txt) program çalışmaya devam edecektir.<br/>
+<ul>
+  <li>Okunacak dosyayı projenin ana klasörüne atınız.</li>
+  <li>Program çalıştırıldığında kullanıcıdan okunacak dosyanın adı istenecektir.</li>
+  <li>Dosya adı girildiğinde (örnek: giris.txt) program çalışmaya devam edecektir.</li>
+</ul>
